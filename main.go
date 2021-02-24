@@ -11,6 +11,7 @@ import (
 func main() {
 	var port string
 	flag.StringVar(&port, "port", "8080", "The port to listen on.")
+	flag.Parse()
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(200)
