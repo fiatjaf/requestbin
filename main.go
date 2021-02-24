@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"time"
 )
@@ -16,18 +15,13 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(200)
 
-		headers := bytes.Buffer{}
-		r.Header.Write(&headers)
+		req := bytes.Buffer{}
+		r.Write(&req)
 
-		body, _ := ioutil.ReadAll(r.Body)
-
-		fmt.Printf(`===
-%s %s %s
-
-Headers:
-%s
-Body: %s
-`, time.Now().Format("15:04:05"), r.Method, r.URL.Path, headers.String(), string(body))
+		fmt.Printf("\n=== %s ===\n%s\n",
+			time.Now().Format("15:04:05"),
+			req.String(),
+		)
 	})
 
 	fmt.Println("Listening for requests at 0.0.0.0:" + port)
