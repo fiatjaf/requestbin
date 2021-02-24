@@ -9,7 +9,7 @@ The most simple HTTP server thing that just logs all the requests it gets to the
 go get github.com/fiatjaf/requestbin
 ```
 
-Or grab a binary from the [releases](releases).
+Or grab a binary from the [releases](https://github.com/fiatjaf/requestbin/releases).
 
 ## Usage
 
